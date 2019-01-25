@@ -4,7 +4,7 @@ services:
 - docker
 script:
 - docker build -t halotools/server-ci-helper:latest .
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
 - docker push halotools/server-ci-helper:latest
 env:
   global:
