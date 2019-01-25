@@ -35,6 +35,7 @@ def main():
 
     while not results:
         iterations += 1
+        print("Waiting for server {} to appear...".format(server_label))
         if iterations > 10:
             results = "Unable to get scan results! Exiting!"
             clean_enough = False
