@@ -70,6 +70,8 @@ def main():
 def get_server(server, instance_id, start_time, timeout):
     while True:
         scanned_server = server.list_all(csp_instance_id=instance_id)
+        if not scanned_server and os.getenv("SERVER_LABEL"):
+            scanned_server = server.list_all(server_label=os.getenv("SERVER_LABEL"))
         if scanned_server:
             return scanned_server[0]
         check_timeout(start_time, timeout)
