@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="static/css/sva_report.css" media="all"
+          rel="stylesheet">
+    <title>Cloudpassage SVA Report</title>
+</head>
+<body>
+<div id="report">
+    <div id="header-container">
+        <div id="header-leftbumper-logo">
+            <img src="static/img/cloudpassage_logo.gif">
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+
+    <div class="report-header">
+        <h2>Software Risks Remediation Report for {{server["csp_image_id"]}}</h2>
+        <p>
+          Scanned on {{scan_time}}
+        </p>
+    </div>
+
+    <div class="report-content">
+        <h3>Test Results</h3>
+        <table class="report-table">
+            <thead>
+            <tr>
+                <th>Criteria</th>
+                <th>Threshold</th>
+                <th>Actual Value</th>
+                <th>Test Result</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for name,test in tests.items() %}
+            {% if "actual" in test %}
+            <tr class="{{ loop.cycle('odd', 'even') }}">
+                <td class="center">
+                    {{name}}
+                </td>
+                <td>
+                    {{test["threshold"]}}
+                </td>
+                <td>
+                    {% if test["result"] %}
+                        <span class="passed">{{test["actual"]}}</span>
+                    {% else %}
+                        <span class="failed">{{test["actual"]}}</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if test["result"] %}
+                        <span class="passed">Pass</span>
+                    {% else %}
+                        <span class="failed">Fail</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        <h3>Found Issues</h3>
+        <table class="report-table">
+            <thead>
+            <tr>
+                <th>Critical</th>
+                <th>Package</th>
+                <th>Remotely<br>Exploitable?</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for finding in findings %}
+            <tr class="{{ loop.cycle('odd', 'even') }}">
+                <td class="center">
+                    <span class="report-finding-critical">
+                        {% if finding["critical"] %}
+                        Yes
+                        {% endif %}
+                    </span>
+                </td>
+                <td>
+                    {{finding["package_name"]}}, {{finding["package_version"]}}
+                </td>
+                <td class="center">
+                    {{finding["remote"]}}
+                </td>
+                <td>
+                    <ul>
+                        {% for cve_entry in finding["cve_entries"] %}
+                        <li>
+                            <span class="report-entry-name"><a href="cve/{{cve_entry['cve_entry']}}.html">{{cve_entry["cve_entry"]}}</a>, CVSS Score: {{cve_entry["cvss_score"]}}</span>
+                            <div class="report-entry-body">
+                                {{cve_details[cve_entry["cve_entry"]]["summary"]}}
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

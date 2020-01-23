@@ -1,0 +1,51 @@
+body{font:15px Arial, Helvetica, sans-serif;margin:0;padding:0;text-align:center;color:#000000;background-color:white;min-width:960px}
+
+#header-container{width:97%;margin:0 auto;margin-top:10px;text-align:left}
+
+#header-leftbumper-logo{width:250px;height:38px;float:left}
+
+#header-bar-content{text-align:right;float:right;padding-bottom:10px}
+
+table{border-collapse:collapse}
+
+#report .report-footer{margin:20px 0}
+
+table.report-table{width:90%;margin:auto}
+
+table.report-table thead{vertical-align:bottom}
+
+table.report-table tbody tr>td,table.report-table thead tr>th{padding:4px;border-bottom:1px solid black}
+
+table.report-table th.left{text-align:left}
+
+table.report-table tbody{vertical-align:top}
+
+table.report-table tbody ul{list-style:none;text-align:left}
+
+table.report-table tbody li{padding:2px}
+
+table.report-table tbody td{padding:3px;font-size:95%}
+
+table.report-table tbody .report-finding-critical{color:#ff0000}
+
+table.report-table tbody .report-entry-name{font-weight:bold}
+
+table.report-table tbody .report-entry-body{font-size:90%}
+
+table.report-table tbody .sca-check-finding-detail{padding:5px 0;border-bottom:2px dotted #000}
+
+table.report-table tbody .sca-check-finding-detail .header{font-weight:bold}
+
+table.report-table tbody .passed{color:#008000}
+
+table.report-table tbody .failed{color:#ff0000}
+
+table.report-table tbody .sca-check-finding-detail .details{font-size:90%}
+
+table.report-table tbody td.center{text-align:center}
+
+table.report-table tr.odd{background-color:#F5F5F6}
+
+table.report-table tr.even{background-color:#FFFFFF}
+
+@media print{#header-bar-content{display:none}}

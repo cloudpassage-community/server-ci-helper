@@ -1,7 +1,9 @@
-FROM halotools/python-sdk:ubuntu-16.04_sdk-1.2.3_py-2.7
+FROM docker.io/halotools/python-sdk:ubuntu-18.04_sdk-latest_py-3.6
 
 WORKDIR /app/
 
-COPY application.py /app/
+COPY ./ /app/
 
-CMD /usr/bin/python /app/application.py
+RUN pip3 install -r /app/requirements.txt
+
+CMD /usr/bin/python3 /app/application.py

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{cve}}</title>
+    <link href="../static/css/cve_detail.css" media="all"
+          rel="stylesheet">
+</head>
+<body>
+<div id="content">
+
+    <h1>{{cve}}</h1>
+    <h3>Common Vulnerabilities and Exposures (CVE) Entry</h3>
+    <hr>
+    <h2>Vulnerability Details</h2>
+    <div class="value">
+        <p>{{cve_detail["summary"]}}</p>
+    </div>
+    <div>
+        <div class="label">Published</div>
+        <div class="value">{{cve_detail["published"]}}</div>
+        <div class="label">Last Modified</div>
+        <div class="value">{{cve_detail["last_modified"]}}</div>
+    </div>
+    <br>
+    <h2>CVSS Base Metrics</h2>
+    <div class="label">NIST CVSS Base Score</div>
+    <div class="value">
+        {{cve_detail["CVSS Metrics"]["score"]}}
+    </div>
+    <div class="label">Access Vector</div>
+    <div class="value"><span class="local access_vector">{{cve_detail["CVSS Metrics"]["access_vector"]}}</span></div>
+    <div class="label">Access Complexity</div>
+    <div class="value"><span class="medium access_complexity">{{cve_detail["CVSS Metrics"]["access_complexity"]}}</span></div>
+    <div class="label">Authentication Required</div>
+    <div class="value"><span class="none authentication">{{cve_detail["CVSS Metrics"]["authentication"]}}</span></div>
+    <div class="label">Confidentiality Impact</div>
+    <div class="value"><span class="complete impact">{{cve_detail["CVSS Metrics"]["confidentiality_impact"]}}</span></div>
+    <div class="label">Integrity Impact</div>
+    <div class="value"><span class="complete impact">{{cve_detail["CVSS Metrics"]["integrity_impact"]}}</span></div>
+    <div class="label">Availability Impact</div>
+    <div class="value"><span class="complete impact">{{cve_detail["CVSS Metrics"]["availability_impact"]}}</span></div>
+    <div class="label">Source</div>
+    <div class="value">{{cve_detail["CVSS Metrics"]["source"]}}</div>
+    <p>
+        <a href="https://www.first.org/cvss/v2/faq#c7" target="_BLANK">NIST FAQ on Base Metrics</a>
+    </p>
+    <br>
+    <br>
+    <h2>External References</h2>
+    <div class="label">NVD Database Entry</div>
+    <div class="value"><a class="new-window-link" href="http://web.nvd.nist.gov/view/vuln/detail?vulnId={{cve}}">{{cve}}</a>
+    </div>
+    {% for reference in cve_detail["References"] %}
+    <div>
+        <a class="new-window-link" href="{{reference}}">{{reference}}</a>
+        <span>(new window)</span>
+    </div>
+    {% endfor %}
+    <br>
+    <h2>Affected Packages</h2>
+    {% for package in cve_detail["Vulnerable packages"] %}
+    <div class="label">Cpe</div>
+    <div class="value">{{package}}</div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
