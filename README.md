@@ -21,8 +21,8 @@ and maximum CVSS score.
 | INSTANCE_ID         | Unique identifier to search for test instance and get scan results         |
 | SERVER_LABEL        | Optional - If instance is not found with INSTANCE_ID, then this fallback identifier will be used. Specify the server label when installing the Halo agent using the "--server-label=yourLabel" flag|
 | SCAN_MODULE         | Pick one or both: `sva` or `csm` or `sva,csm`                              |
-| MAX_CRITICAL        | More than this many critical findings will cause a test failure            |
-| MAX_NON_CRITICAL    | More than this many non-critical findings will cause a test failure        |
+| MAX_CRITICAL        | More than this number of critical findings will cause a test failure            |
+| MAX_NON_CRITICAL    | More than this number non-critical findings will cause a test failure        |
 | MAX_CVSS            | A maximum CVSS score among all CVEs greater than this will fail the test   |
 | FAIL_EXIT_CODE      | Optional - Exit code that script returns when at least one test fails. Default is set to 2. You can use this option to set a custom exit code to mark the build unstable.|
 
@@ -35,7 +35,7 @@ docker run -t --rm \
     -e "HALO_API_KEY=${HALO_CI_API_CREDS_USR}" \
     -e "HALO_API_SECRET_KEY=${HALO_CI_API_CREDS_PSW}" \
     -e "INSTANCE_ID=${INSTANCE_ID}" \
-    -e "SCAN_MODULE=sva,csm" \
+    -e "SCAN_MODULE=${SCAN_MODULE}" \
     -e "MAX_CRITICAL=${MAX_CRITICAL}" \
     -e "MAX_NON_CRITICAL=${MAX_NON_CRITICAL}" \
     -e "MAX_CVSS=${MAX_CVSS}" \
