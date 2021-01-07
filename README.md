@@ -52,3 +52,8 @@ as shown in the above example. Test results based on above criteria
 will be displayed at the top. Vulnerabilities found are displayed with 
 detail CVE information. Similarly, configuration findings are displayed with the
 detailed check results and remediation information if available.
+
+<!---
+#CPTAGS:community-supported integration deployment
+#TBICON:images/python_icon.png
+-->
